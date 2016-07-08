@@ -101,9 +101,9 @@ void multi(int num, int start) {
   }
   int carry = 0; 
   for(int j = lenfir - 1; j >= 0; j--) {
-    int t = (fir[j] - '0') * num;
-    carry = (carry + t) / 10;
-    temp->insert(i++, t );
+    int t = (fir[j] - '0') * num + carry;
+    carry = ( t) / 10;
+    temp->insert(i++, t % 10 );
   }
   while(carry) {
     temp->insert(i++, carry % 10);
@@ -130,7 +130,6 @@ arrList *addList(arrList *a, arrList *b) {
     res->insert(i, left);
     carry = tot / 10;
   }
-
   arrList *longarr;
   if(along)
     longarr = a;
@@ -148,6 +147,7 @@ arrList *addList(arrList *a, arrList *b) {
     res->insert(i++, carry % 10);
     carry /= 10;
   } 
+  return res;
 }
 
 int main() {
@@ -156,9 +156,25 @@ int main() {
   lensec = strlen(sec);
   for(int i = lensec - 1; i >= 0; i--) {
     multi(sec[i] - '0', lensec - 1 - i);
+  }
+  arrList *result;
+  if(lensec == 1) {
+    result = mid[0];
+  } else {
+    result = addList(mid[0], mid[1]);
+    for(int i = 2; i < lensec; i++) {
+      arrList* t = addList(mid[i], result);     
+      delete result;
+      result = t;
+    }
+  }
+  for(int i = result->length() - 1; i >= 0; i--) {
+    int num;
+    result->getValue(i, num);
+    printf("%d", num);
   } 
-       
 }
+
 
 
 
