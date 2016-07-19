@@ -1,16 +1,16 @@
-#include<iostream>
-#include<string.h>
-
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
 using namespace std;
 
 char line[100][20];
 
 char num[32][20] = {"negative", "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million"};
 
-int val[32] = {-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15, 16, 17, 18, 19, 20, 30, 40, 50, 60, 70, 80, 100, 1000, 1000000};
+int val[32] = {-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ,15, 16, 17, 18, 19, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000, 1000000};
 
 int getValue(char *s) {
-  for(int i = 0; i < 32; i++) {
+  for(int i = 1; i < 29; i++) {
     if(!strcmp(num[i], s))
       return val[i];
   }
@@ -73,7 +73,7 @@ int main() {
   int end;
   freopen("acm.in", "r", stdin);
   while((end = getLine()) != EOF) {
-    if(line[0][0]== '\0')
+    if(strlen(line[0]) < 2)
       break;
     if(getValue(line[0]) == -1) {
       printf("%d\n", -dfs(1, end));
