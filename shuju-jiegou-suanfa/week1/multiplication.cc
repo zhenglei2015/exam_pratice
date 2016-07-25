@@ -29,7 +29,6 @@ class arrList {
     bool deleteNode(const int p);
     bool setValue(const int p, const int value);
     bool getValue(const int p, int &value);
-    bool getPos(int &p, const int value);
 };
 
 int arrList::length() {
