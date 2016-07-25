@@ -12,7 +12,6 @@ int CC(int n, int m) {
   return C[n][m];
 }
 
-
 int main() {
 //  freopen("acm.in", "r", stdin);
   int n, m, k;
