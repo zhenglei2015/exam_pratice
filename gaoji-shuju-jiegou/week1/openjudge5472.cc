@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string.h>
-
+#include <stdio.h>
 using namespace std;
 
-int arr[100000];
-int temp[100000];
+int arr[1000000];
+int temp[1000000];
 
 int merge(int left, int right, int arr[], int temp[]) {
   int middle = (left + right) / 2;
@@ -18,7 +18,7 @@ int merge(int left, int right, int arr[], int temp[]) {
   int tr = middle + 1;
   int t = left;
   while(ll && lr) {
-    if(temp[tl] < temp[tr]) {
+    if(temp[tl] <= temp[tr]) {
       arr[t++] = temp[tl++];
       ll--;
     } else if (temp[tl] > temp[tr]) {
@@ -51,8 +51,7 @@ int mergeSort(int left, int right, int arr[], int temparr[]) {
 
 
 int main() {
-  freopen("acm.in", "r", stdin);
-  int n;
+ int n;
   while(scanf("%d", &n)) {
     if(n == 0)
       break;
