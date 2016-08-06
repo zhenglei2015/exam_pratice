@@ -17,16 +17,19 @@ int find(int x) {
     return x;
   }
   int fa = find(pre[x]);
-  rank[x] = (rank[x] + rank[pre[x]]) % 2;
+  rank[x] = (rank[x] + rank[pre[x]]) % 2; 
+  // 注意rank只能由本节点和上一层父节点决定不是最终父节点
+  // 当有合并的时候会根据节点与原父节点关系以及原父节点与新父节点关系确定自己的新关系
   pre[x] = fa;
   return fa;
 }
 
-void join(int a, int b) { // a 和 b 不同
+void join(int a, int b) { // 只有 a 和 b 不同这一种关系
   int fa = find(a);
   int fb = find(b);
   if(fa == fb)
     return;
+  // 这个地方根据子节点之间的关系判断这两个父节点之间的关系
   if(rank[a] + rank[b] != 1)
     rank[fb] = !rank[fb];
   pre[fb] = fa;
